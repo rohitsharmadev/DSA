@@ -14,17 +14,16 @@
 var removeNthFromEnd = function(head, n) {
     let sant = new ListNode();
     sant.next = head;
-    let length =0;
-    while(head) {
-        head = head.next;
-        length++;
+    let slow= fast  =sant;
+    
+    for(let i=0; i<n; i++ ){
+        fast = fast.next;
     }
 
-    let prevPos = length -n;
-    let prev = sant;
-    for(let i=0; i<prevPos; i++ ){
-        prev = prev.next;
+    while(fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next;
     }
-    prev.next = prev.next.next;
+    slow.next = slow.next.next;
     return sant.next;
 };
